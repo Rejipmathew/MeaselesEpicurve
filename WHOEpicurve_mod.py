@@ -114,8 +114,8 @@ elif page == "Map":
         color_continuous_scale='YlOrRd',
         projection='natural earth',
         title=f"Measles Cases by Country in {selected_year}",
-        width=1600,  # Set the width of the map
-        height=1000   # Set the height of the map
+        width=1200,  # Set the width of the map
+        height=800   # Set the height of the map
     )
 
     # Display the map
