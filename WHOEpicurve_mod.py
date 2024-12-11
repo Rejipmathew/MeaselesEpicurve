@@ -118,5 +118,19 @@ elif page == "Map":
         height=800   # Set the height of the map
     )
 
+    # Highlight the selected country on the map
+    fig.update_geos(
+        fitbounds="locations", 
+        visible=False, 
+        showcountries=True,
+        countrycolor="black",
+        scope="world"  # Set the scope to "world" to ensure all countries are visible
+    )
+    fig.add_scattergeo(
+        locations=[selected_country],  # This adds a marker for the selected country
+        locationmode='country names',
+        marker=dict(size=10, color="red")  # Customize the marker as needed
+    )
+
     # Display the map
     st.plotly_chart(fig)
