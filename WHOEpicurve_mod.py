@@ -7,7 +7,7 @@ import numpy as np
 # Load the Measles data from the CSV file
 @st.cache_data  # Cache the data for faster loading
 def load_data():
-    df = pd.read_csv(r"C:\Users\rejip\Downloads\407-table-web-measles-cases-by-month - WEB.csv")
+    df = pd.read_csv(r"https://github.com/Rejipmathew/MeaselesEpicurve/blob/main/407-table-web-measles-cases-by-month%20-%20WEB.csv")
     return df
 
 df = load_data()
