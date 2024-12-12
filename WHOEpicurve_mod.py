@@ -23,7 +23,7 @@ st.title("Measles Epicurve App")
 selected_country = st.sidebar.selectbox("Select Country", countries)
 
 # Create pages using st.radio
-page = st.sidebar.radio("Select Page", ["Trend Plot", "Epicurve Plot", "Map"])
+page = st.sidebar.radio("Select Page", ["Trend Plot (2011-2024)", "Map","Epicurve Plot"])
 
 if page == "Trend Plot":
     # --- Trend Plot ---
