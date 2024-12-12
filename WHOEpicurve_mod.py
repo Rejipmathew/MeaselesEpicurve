@@ -17,7 +17,7 @@ countries = df['Country'].unique()
 years = df['Year'].unique()
 
 # Streamlit app title
-st.title("Measles Epicurve App")
+st.title("Measles Epicurve Case distribution trend map dashboard-WHO data")
 
 # Create pages using st.sidebar.radio
 page = st.sidebar.radio("Select Page", ["Home", "Trend Plot", "Epicurve Plot", "Map"])
