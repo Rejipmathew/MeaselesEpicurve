@@ -19,10 +19,14 @@ years = df['Year'].unique()
 # Streamlit app title
 st.title("Measles Epicurve App")
 
-# --- How to Use --- This is now the landing page
-st.subheader("How to Use This Dashboard")
-st.write("""
-This interactive dashboard allows you to explore measles case data across different countries and years. 
+# Create pages using st.sidebar.radio
+page = st.sidebar.radio("Select Page", ["Home", "Trend Plot", "Epicurve Plot", "Map"])
+
+if page == "Home":
+    # --- Home Page ---
+    st.subheader("Welcome to the Measles Epicurve Dashboard!")
+    st.write("""
+    This interactive dashboard allows you to explore measles case data across different countries and years. 
 It provides three main visualizations to help you understand the trends and patterns of measles outbreaks:
 
 **1. Trend Plot:**
@@ -63,17 +67,16 @@ It provides three main visualizations to help you understand the trends and patt
 * **Explore different countries and years:**  Change the selections in the sidebar to analyze measles trends in various regions and time periods.
 * **Look for patterns:** Pay attention to any recurring trends, spikes, or declines in the plots and map.
 * **Combine visualizations:** Use the information from all three visualizations together to gain a comprehensive understanding of the measles data.
-""")
 
-# Sidebar for selecting country
-selected_country = st.sidebar.selectbox("Select Country", countries)
+    **Navigate to other pages using the sidebar.**
+    """)
 
-# Create pages using st.radio (after "How to Use")
-page = st.sidebar.radio("Select Page", ["Trend Plot", "Epicurve Plot", "Map"])
-
-if page == "Trend Plot":
+elif page == "Trend Plot":
     # --- Trend Plot ---
     st.subheader("Trend of Measles Cases Over the Years")
+
+    # Sidebar for selecting country (only on this page)
+    selected_country = st.sidebar.selectbox("Select Country", countries)
 
     # Preprocessing: Convert relevant columns to numeric, coercing errors to NaN
     for col in ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]:
@@ -94,6 +97,9 @@ if page == "Trend Plot":
 elif page == "Epicurve Plot":
     # --- Epicurve Plot ---
     st.subheader("Epicurve for Selected Year")
+
+    # Sidebar for selecting country and year (only on this page)
+    selected_country = st.sidebar.selectbox("Select Country", countries)
     selected_year = st.sidebar.selectbox("Select Year", years)
 
     # Filter data based on selected country and year
@@ -140,7 +146,8 @@ elif page == "Map":
     # --- Map ---
     st.subheader("Map of Selected Country")
 
-    # Select the year for the map
+    # Sidebar for selecting country and year for the map (only on this page)
+    selected_country = st.sidebar.selectbox("Select Country", countries)  
     selected_year = st.sidebar.selectbox("Select Year for Map", years)
 
     # Filter data for the selected year
