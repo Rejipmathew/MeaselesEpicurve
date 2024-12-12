@@ -17,13 +17,13 @@ countries = df['Country'].unique()
 years = df['Year'].unique()
 
 # Streamlit app title
-st.title("Measles Epicurve Case-distribution Map Dashboard")
+st.title("Measles Epicurve App")
 
 # Sidebar for selecting country
 selected_country = st.sidebar.selectbox("Select Country", countries)
 
 # Create pages using st.radio
-page = st.sidebar.radio("Select Page", ["Trend Plot", "Epicurve Plot","Map"])
+page = st.sidebar.radio("Select Page", ["Trend Plot", "Epicurve Plot", "Map", "How to Use"])
 
 if page == "Trend Plot":
     # --- Trend Plot ---
@@ -124,13 +124,60 @@ elif page == "Map":
         visible=False, 
         showcountries=True,
         countrycolor="black",
-        scope="world"  # Set the scope to "world" to ensure all countries are visible
+        scope="world"
     )
     fig.add_scattergeo(
-        locations=[selected_country],  # This adds a marker for the selected country
+        locations=[selected_country],
         locationmode='country names',
-        marker=dict(size=10, color="red")  # Customize the marker as needed
+        marker=dict(size=10, color="red")
     )
 
     # Display the map
     st.plotly_chart(fig)
+
+elif page == "How to Use":
+    # --- How to Use ---
+    st.subheader("How to Use This Dashboard")
+    st.write("""
+    This interactive dashboard allows you to explore measles case data across different countries and years. 
+    It provides three main visualizations to help you understand the trends and patterns of measles outbreaks:
+
+    **1. Trend Plot:**
+
+    * **See the big picture:** This plot displays the overall trend of measles cases over time for a selected country. 
+    * **Identify outbreaks:**  Notice any spikes or declines in cases over the years, indicating potential outbreaks or the impact of vaccination campaigns.
+    * **How to use:**
+        * Select a country from the "Select Country" dropdown in the sidebar.
+        * The plot will automatically update to show the trend of measles cases for that country over all available years.
+
+    **2. Epicurve Plot:**
+
+    * **Monthly breakdown:**  This plot provides a detailed view of measles cases for a specific year in a selected country, broken down by month.
+    * **Seasonal patterns:** Observe any seasonal trends in measles cases.
+    * **How to use:**
+        * Select a country from the "Select Country" dropdown in the sidebar.
+        * Choose a year from the "Select Year" dropdown in the sidebar.
+        * The plot will update to show the monthly distribution of measles cases for that year and country.
+
+    **3. Map:**
+
+    * **Global view:** This map provides a geographical representation of measles cases across different countries for a selected year.
+    * **Identify hotspots:** Easily spot countries with high numbers of cases, indicated by darker colors on the map.
+    * **How to use:**
+        * Select a year from the "Select Year for Map" dropdown in the sidebar.
+        * The map will display total measles cases for each country in that year.
+        * Hover over a country to see its name and the total number of cases.
+        * The selected country from the sidebar will be highlighted with a red marker.
+
+    **Navigating the Dashboard:**
+
+    * **Page selection:** Use the radio buttons in the sidebar to switch between the "Trend Plot", "Epicurve Plot", and "Map" pages.
+    * **Country selection:** The "Select Country" dropdown in the sidebar allows you to choose the country for which you want to see data in the Trend Plot and Epicurve Plot.
+    * **Year selection:**  You can select specific years for the Epicurve Plot and the Map using the respective dropdowns in the sidebar.
+
+    **Tips for Using the Dashboard:**
+
+    * **Explore different countries and years:**  Change the selections in the sidebar to analyze measles trends in various regions and time periods.
+    * **Look for patterns:** Pay attention to any recurring trends, spikes, or declines in the plots and map.
+    * **Combine visualizations:** Use the information from all three visualizations together to gain a comprehensive understanding of the measles data.
+    """)
