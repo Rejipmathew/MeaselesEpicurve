@@ -17,7 +17,7 @@ countries = df['Country'].unique()
 years = df['Year'].unique()
 
 # Streamlit app title
-st.title("Measles Epicurve App")
+st.title("Measles Epicurve Case-distribution Map Dashboard")
 
 # Sidebar for selecting country
 selected_country = st.sidebar.selectbox("Select Country", countries)
